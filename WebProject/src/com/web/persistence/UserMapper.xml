@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.persistence.UserMapper">
+	<resultMap type="com.web.bean.User" id="BaseResultMap">
+		<id column="ID" jdbcType="INTEGER" property="id"/>
+		<result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+		<result column="USER_ROLE" jdbcType="INTEGER" property="userRole"/>
+		<result column="IS_DELETED" jdbcType="INTEGER" property="isDeleted"/>
+		<result column="LOGO" jdbcType="VARCHAR" property="logo"/>
+		<result column="BUSINESS" jdbcType="VARCHAR" property="business"/>
+		<result column="PHONE" jdbcType="VARCHAR" property="phone"/>
+		<result column="CONTACT" jdbcType="VARCHAR" property="contact"/>
+		<result column="NAME" jdbcType="VARCHAR" property="name"/>
+		<result column="ADDRESS" jdbcType="VARCHAR" property="address"/>
+	</resultMap>
+	
+	<!-- 根据用户名查找 -->
+	<select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT * FROM USERINFO WHERE USERNAME = #{name};
+	</select>
+	
+	<!-- 查找全部 -->
+	<select id="userFindAll" parameterType="com.web.bean.UserExample" resultMap="BaseResultMap">
+		SELECT * FROM USERINFO WHERE IS_DELETED = 0 and USER_ROLE != 2 ORDER BY ID;
+	</select>
+	
+	<!-- 审核 -->
+	<update id="updateById" parameterType="com.web.bean.User">
+		UPDATE USERINFO SET USER_ROLE = #{userRole,jdbcType=INTEGER} WHERE ID = #{id,jdbcType=INTEGER};
+	</update>
+	
+	<!-- 添加厂商 -->
+	<insert id="insertUser" parameterType="com.web.bean.User">
+		INSERT INTO USERINFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="userRole != null">
+				USER_ROLE,
+			</if>
+			<if test="logo != null">
+				LOGO,
+			</if>
+			<if test="business != null">
+				BUSINESS,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="contact != null">
+				CONTACT,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="isDeleted != null">
+				IS_DELETED,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="username != null">
+				 #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				 #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userRole != null">
+				 #{userRole,jdbcType=INTEGER},
+			</if>
+			<if test="logo != null">
+				 #{logo,jdbcType=VARCHAR},
+			</if>
+			<if test="business != null">
+				 #{business,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				 #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="contact != null">
+				 #{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				 #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				 #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="isDeleted != null">
+				 #{isDeleted,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	
+</mapper>

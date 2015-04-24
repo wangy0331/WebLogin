@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.logout{
+	background-color: transparent;
+	border: 1.5px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    height: 28px;
+    margin-top: 2px;
+    width: 58px;
+}
+.logout:hover{
+	background-color: #FFFFFF;
+	color: #959595;
+}

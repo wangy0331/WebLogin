@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/sitemesh/">  
+  <decorator name="main" page="base.jsp">  
+      <pattern>/common/*</pattern>
+      <pattern>/book/*</pattern> 
+      <pattern>/notice/*</pattern> 
+      <pattern>/courseware/*</pattern>   
+      <pattern>/special/*</pattern>
+      <pattern>/validate/*</pattern>
+  </decorator>
+  <decorator name="none">
+        <pattern>/common/showUploadFiles</pattern>
+        <pattern>/common/showUploadStart</pattern>
+        <pattern>/common/showUploadCommonFile</pattern>
+    </decorator> 
+</decorators>  
